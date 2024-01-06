@@ -169,7 +169,7 @@ else :
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-    prompt = st.chat_input("Say something")
+    prompt = st.text_input("Say something")
     if prompt:
         st.write(f"User has sent the following prompt: {prompt}")
         # Accept user input
