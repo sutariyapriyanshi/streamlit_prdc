@@ -5,8 +5,8 @@ import pickle as pk
 import base64
 from PIL import Image
 import os
-
-# Assuming 'lung.png' is in the same directory as your script
+import openai
+from streamlit_chat import message
 
 # Loading Image using PIL
 im = Image.open('lung.png')
@@ -146,8 +146,7 @@ elif choice == 'Disease Prescription':
     st.write('Heart disease is the leading cause of death for people of most racial and ethnic groups in the United States, including African Americans, American Indians and Alaska Natives, and white people. For Asian Americans and Pacific Islanders and Hispanics, heart disease is second only to cancer.')
 
 else :
-    # Placeholder responses for the chatbot
-    def get_assistant_response(user_input):
+    def simple_chatbot(user_input, history):
         if user_input == 'what is project theme?':
             return "Our Project Theme is Heart disease predictor, it is called Apollo 20"
         elif user_input == 'Tell me about heart disease':
@@ -161,29 +160,23 @@ else :
         else:
             return "I'm sorry, I didn't understand that."
 
-    # Initialize chat history
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+    def main():
+        st.title("Simple Chatbot")
 
-    # Display chat messages from history on app rerun
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-    prompt = st.text_input("Say something")
-    if prompt:
-        st.write(f"User has sent the following prompt: {prompt}")
-        # Accept user input
-        # Add user message to chat history
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        # Display user message in chat message st
-        with st.chat_message("user"):
-            st.markdown(prompt)
+        # Initialize history list
+        history = []
 
-        # Get assistant response
-        assistant_response = get_assistant_response(prompt)
+        user_input = st.text_input("You:", "")
+        
+        if st.button("Submit"):
+            response = simple_chatbot(user_input, history)
+            history.append((user_input, response))
 
-        # Add assistant message to chat history
-        st.session_state.messages.append({"role": "assistant", "content": assistant_response})
-        # Display assistant response in chat message container
-        with st.chat_message("assistant"):
-            st.markdown(assistant_response)
+        # Display history
+        for user_query, bot_response in history[-5:]:  # Display the last 5 entries
+            st.text(f"You: {user_query}")
+            st.text(f"Bot: {bot_response}")
+            st.text("----")
+
+    if __name__ == "__main__":
+        main()
