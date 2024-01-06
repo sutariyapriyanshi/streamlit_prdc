@@ -4,9 +4,6 @@ import streamlit as st
 import pickle as pk
 import base64
 from PIL import Image
-import os
-import openai
-from streamlit_chat import message
 
 # Loading Image using PIL
 im = Image.open('lung.png')
