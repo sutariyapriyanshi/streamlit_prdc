@@ -141,6 +141,13 @@ elif choice == 'Disease Prescription':
     st.subheader('Do race and ethnicity affect the risk of heart disease?')
     st.write('Heart disease and stroke can affect anyone, but some groups are more likely to have conditions that increase their risk for cardiovascular disease.')
     st.write('Heart disease is the leading cause of death for people of most racial and ethnic groups in the United States, including African Americans, American Indians and Alaska Natives, and white people. For Asian Americans and Pacific Islanders and Hispanics, heart disease is second only to cancer.')
+    # Copyright information
+    copyright_html = """
+    <div style="text-align: center; padding: 10px;">
+    <p style="margin: 0;">&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+    """
+    st.markdown(copyright_html, unsafe_allow_html=True)
 
 else :
     def simple_chatbot(user_input, history):
@@ -177,3 +184,11 @@ else :
 
     if __name__ == "__main__":
         main()
+    # Copyright information
+    copyright_html = """
+    <div style="text-align: center; padding: 10px;">
+    <p style="margin: 0;">&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+    """
+    st.markdown(copyright_html, unsafe_allow_html=True)
+
