@@ -9,7 +9,7 @@ import os
 # Assuming 'lung.png' is in the same directory as your script
 
 # Loading Image using PIL
-im = Image.open('C:\\Users\\Priyanshi Sutariya\\python\\hlth\\lung.png')
+im = Image.open('lung.png')
 # Adding Image to web app
 st.set_page_config(page_title="Heart Disease Predictor", page_icon = im)
 
@@ -31,15 +31,15 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_background('C:\\Users\\Priyanshi Sutariya\\python\\hlth\\h.jpg')
+set_background('h.jpg')
 
 st.sidebar.title('Feature Selection Menu')
 choice = st.sidebar.radio("Select any",("Heart Disease Predictor","Disease Prescription","Chatbot"))
 
 if choice=="Heart Disease Predictor":
 
-    model = pk.load(open('C:\\Users\\Priyanshi Sutariya\\python\\hlth\\Heart_disease_model.pkl', 'rb'))
-    data = pd.read_csv('C:\\Users\\Priyanshi Sutariya\\python\\hlth\\heart_disease.csv')
+    model = pk.load(open('Heart_disease_model.pkl', 'rb'))
+    data = pd.read_csv('heart_disease.csv')
 
     st.header('Heart Disease Predictor')
 
